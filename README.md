@@ -1,4 +1,4 @@
-🚀 Internal Transfer Service
+  Internal Transfer Service
 
 The Internal Transfer Service supports the following operations:
 
@@ -16,7 +16,7 @@ Validations & error responses
 
 Swagger documentation
 
-⭐ Features
+ Features
 
 Create a new bank account
 
@@ -34,7 +34,7 @@ Clear JSON error responses
 
 Swagger UI for API exploration
 
-📌 API Examples
+ API Examples
 ➤ Create Account
 
 POST /accounts
@@ -96,13 +96,12 @@ Request
 Response
 204 No Content
 
-🛠️ How to Run Locally
+  How to Run Locally
 ➤ Using Docker (Recommended)
 
 Build & run everything with:
 
 docker compose up --build
-
 
 This will:
 
@@ -114,32 +113,42 @@ Start the Spring Boot service
 
 Your app will be available at:
 
-👉 http://localhost:8080
+  http://localhost:8080
 
-➤ Using Maven (requires PostgreSQL running)
+ Swagger UI
 
-1️⃣ Install dependencies
+ http://localhost:8080/swagger-ui.html
+
+OpenAPI Specification
+
+ http://localhost:8080/v3/api-docs
+
+ 
+ 
+ Using Maven (requires PostgreSQL running)
+
+1 Install dependencies
 
 ./mvnw clean install
 
 
-2️⃣ Run the application
+2️Run the application
 
 ./mvnw spring-boot:run
 
 
 Application will start at:
 
-👉 http://localhost:8080
+ http://localhost:8080
 
-📚 Swagger Documentation
+ Swagger Documentation
 
 Once the application is running, open:
 
 Swagger UI
 
-👉 http://localhost:8080/swagger-ui.html
+ http://localhost:8080/swagger-ui.html
 
 OpenAPI Specification
 
-👉 http://localhost:8080/v3/api-docs
+ http://localhost:8080/v3/api-docs
