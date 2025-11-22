@@ -1,4 +1,6 @@
-Internal Transfer Service supports following operations
+🚀 Internal Transfer Service
+
+The Internal Transfer Service supports the following operations:
 
 Creating accounts
 
@@ -14,7 +16,7 @@ Validations & error responses
 
 Swagger documentation
 
- Features
+⭐ Features
 
 Create a new bank account
 
@@ -28,22 +30,24 @@ Log every transaction (success & failure)
 
 Input validation for all APIs
 
+Clear JSON error responses
+
 Swagger UI for API exploration
 
- API Examples
+📌 API Examples
 ➤ Create Account
 
 POST /accounts
 
-Request:
+Request
 
 {
-"account_id": 1,
-"initial_balance": "100.00"
+  "account_id": 1,
+  "initial_balance": "100.00"
 }
 
 
-Response:
+Response
 204 No Content
 
 ➤ Get Account
@@ -55,62 +59,49 @@ Example:
 GET /accounts/1
 
 
-Response:
+Response
 
 {
-"account_id": 1,
-"balance": "100.00"
+  "account_id": 1,
+  "balance": "100.00"
 }
 
 ➤ Update Account Balance
 
 PUT /accounts/{accountId}/balance
 
-Request:
+Request
 
 {
-"balance": "500.00"
+  "balance": "500.00"
 }
 
 
-Response:
+Response
 204 No Content
 
 ➤ Perform Transfer
 
 POST /transactions
 
-Request:
+Request
 
 {
-"source_account_id": 1,
-"destination_account_id": 2,
-"amount": "50.00"
+  "source_account_id": 1,
+  "destination_account_id": 2,
+  "amount": "50.00"
 }
 
 
-Response:
+Response
 204 No Content
 
- How to Run Locally
+🛠️ How to Run Locally
+➤ Using Docker (Recommended)
 
-Running with Docker
-Build & Run using Docker Compose
+Build & run everything with:
 
 docker compose up --build
-
-
-Using Maven and need the posgress to run
-1 Install dependencies
-./mvnw clean install
-
-2 Run the Application
-./mvnw spring-boot:run
-
-
-Application starts at:
-
-http://localhost:8080
 
 
 This will:
@@ -121,17 +112,34 @@ Start PostgreSQL
 
 Start the Spring Boot service
 
-App will be available at:
+Your app will be available at:
 
-http://localhost:8080
+👉 http://localhost:8080
 
- Swagger Documentation
+➤ Using Maven (requires PostgreSQL running)
+
+1️⃣ Install dependencies
+
+./mvnw clean install
+
+
+2️⃣ Run the application
+
+./mvnw spring-boot:run
+
+
+Application will start at:
+
+👉 http://localhost:8080
+
+📚 Swagger Documentation
 
 Once the application is running, open:
 
-http://localhost:8080/swagger-ui.html
+Swagger UI
 
+👉 http://localhost:8080/swagger-ui.html
 
-API Specs (OpenAPI):
+OpenAPI Specification
 
-http://localhost:8080/v3/api-docs
+👉 http://localhost:8080/v3/api-docs
