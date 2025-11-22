@@ -1,0 +1,144 @@
+openapi: 3.0.3
+info:
+  title: Internal Transfers API
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080
+paths:
+  /accounts:
+    post:
+      summary: Create a new account
+      operationId: createAccount
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateAccountRequest'
+      responses:
+        '204':
+          description: Account created successfully
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /accounts/{accountId}:
+    get:
+      summary: Get an account and its balance
+      operationId: getAccount
+      parameters:
+        - name: accountId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Account found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountResponse'
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /transactions:
+    post:
+      summary: Submit a transfer transaction
+      operationId: createTransaction
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTransactionRequest'
+      responses:
+        '204':
+          description: Transaction processed successfully
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+components:
+  schemas:
+    CreateAccountRequest:
+      type: object
+      required:
+        - account_id
+        - initial_balance
+      properties:
+        account_id:
+          type: integer
+          format: int64
+        initial_balance:
+          type: string
+          description: Decimal balance as string
+      example:
+        account_id: 123
+        initial_balance: "100.23344"
+
+    AccountResponse:
+      type: object
+      required:
+        - account_id
+        - balance
+      properties:
+        account_id:
+          type: integer
+          format: int64
+        balance:
+          type: string
+          description: Current balance as string
+      example:
+        account_id: 123
+        balance: "100.23344"
+
+    CreateTransactionRequest:
+      type: object
+      required:
+        - source_account_id
+        - destination_account_id
+        - amount
+      properties:
+        source_account_id:
+          type: integer
+          format: int64
+        destination_account_id:
+          type: integer
+          format: int64
+        amount:
+          type: string
+          description: Transfer amount as string
+      example:
+        source_account_id: 123
+        destination_account_id: 456
+        amount: "100.12345"
+
+    ErrorResponse:
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+      example:
+        code: "INVALID_REQUEST"
+        message: "Insufficient balance in source account"
